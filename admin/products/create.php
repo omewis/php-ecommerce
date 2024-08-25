@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
   <head>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+ 
   <?php include '../includes/head.php';
 
 $servername = "localhost";
@@ -28,15 +28,21 @@ $dbname = "ecommerce";
     $category_id=$_POST['category_id'];
     $price=$_POST['price'];
     $discount=$_POST['discount'];
-    $image=$_POST['image'];
-    $available=$_POST['available'];
-    $created_at=$_POST['created_at'];
-    $updated_at=$_POST['updated_at'];
+    $available = isset($_POST['available']) ? $_POST['available'] : null;
+    $image = isset($_FILES['image']) ? $_FILES['image'] : null;
+    if ($image && $image['error'] === 0) {
+        $target_dir = "uploads/";
+        $target_file = $target_dir . basename($image["name"]);
+        move_uploaded_file($image["tmp_name"], $target_file);
+    } else {
+        $target_file = null;
+    }
+    
     
     //insert to database
     $inset_result=$connect->query
-    ("INSERT INTO `products`(`id`, `name`, `details`, `description`, `stock`, `available`, `price`, `image`, `discount`, `created_at`, `updated_at`, `category_id`)
-     VALUES ('$id','$name','$details','$description','$stock','$available','$price','$image','$discount','$created_at','$updated_at','$category_id')
+    ("INSERT INTO `products`(`id`, `name`, `details`, `description`, `stock`, `available`, `price`, `image`, `discount`, `category_id`)
+     VALUES ('$id','$name','$details','$description','$stock','$available','$price','$target_file','$discount','$category_id')
     ");
     
   }
@@ -109,7 +115,7 @@ $dbname = "ecommerce";
                       >
                       <div class="col-sm-9">
                         <input
-                          type="text"
+                          type="number"
                           class="form-control"
                           id="id"
                           placeholder="ID Here"
@@ -310,8 +316,7 @@ $dbname = "ecommerce";
 
     <!-- All Jquery -->
     <?php include '../includes/scripts.php' ?>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
   </body>
 </html>
 
