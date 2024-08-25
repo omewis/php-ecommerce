@@ -1,25 +1,18 @@
-
+<?PHP 
+ include '../includes/dbconnection.php';
+ include '../includes/validation.php';
+?>
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
   <head>
  
   <?php include '../includes/head.php';
-
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "ecommerce"; 
-
-  try {
-    $connect = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-  } catch (Exception $e) {
-   echo $e->getMessage();
-   exit();
-  }
   
   $ctg_result=$connect->query("SELECT * FROM categories");// only select need fetch
   $ctg_data=$ctg_result->fetchAll(PDO::FETCH_ASSOC);
+  
   if($_SERVER['REQUEST_METHOD'] =="POST"){
+  //prepare the values
     $id=$_POST['id'];
     $name=$_POST['name'];
     $details=$_POST['details'];
@@ -28,23 +21,46 @@ $dbname = "ecommerce";
     $category_id=$_POST['category_id'];
     $price=$_POST['price'];
     $discount=$_POST['discount'];
-    $available = isset($_POST['available']) ? $_POST['available'] : null;
-    $image = isset($_FILES['image']) ? $_FILES['image'] : null;
-    if ($image && $image['error'] === 0) {
-        $target_dir = "uploads/";
-        $target_file = $target_dir . basename($image["name"]);
-        move_uploaded_file($image["tmp_name"], $target_file);
-    } else {
-        $target_file = null;
+    $available=isset($_POST['available']) ? $_POST['available'] : null;
+    $image=$_FILES['image'];
+    $imageName=$image['name'];
+    $imageTmp=$image['tmp_name'];
+
+    //validation
+    $errors=[];
+    if (!checkId($id)) {
+      $errors["id"]="Invalid ID.<br>";
     }
-    
-    
-    //insert to database
-    $inset_result=$connect->query
+    if (!checkName($name)) {
+      $errors["name"]="Invalid Name.<br>";
+    }
+    if (!checkDetails($details)) {
+      $errors["details"]="Details cant't be empty.<br>";
+    }
+    if (!checkDescription($description)) {
+      $errors["description"]="Description cant't be empty.<br>";
+    }
+    if (!checkStock($stock)) {
+      $errors["stock"]="Stock should be positive number.<br>";
+    }
+    if (!checkCategory($category_id)) {
+      $errors["category"]="category cant't be empty.<br>";
+    }
+    if (!checkImage($imageName)) {
+     $errors["image"]="Please upload image.<br>";
+    }
+
+    //check if there errors before inserting
+    if(empty($errors)){
+      //insert to database
+    $insert_result=$connect->query
     ("INSERT INTO `products`(`id`, `name`, `details`, `description`, `stock`, `available`, `price`, `image`, `discount`, `category_id`)
-     VALUES ('$id','$name','$details','$description','$stock','$available','$price','$target_file','$discount','$category_id')
+     VALUES ('$id','$name','$details','$description','$stock','$available','$price','$imageName','$discount','$category_id')
     ");
-    
+    if($insert_result){
+      move_uploaded_file($imageTmp,"../../uploads/images/$imageName");
+      }
+    }  
   }
   ?>
   </head>
@@ -96,16 +112,19 @@ $dbname = "ecommerce";
           <div class="row">
             <div class="col-md-12">
               <div class="card">
-                <?php if (isset($inset_result)&& $inset_result){ ?>
+                <?php if (isset($insert_result)&& $insert_result){ ?>
                 <div class="alert alert-success">Added Successfully.</div>
                 <?php }?>
                 <?php if(isset($errors) && !empty($errors)){?>
                 <div class="alert alert-danger">
                   <ul>
-                  <?php foreach ($errors as $error) { echo "<li>$error</li>"; } ?>
+                    <?php foreach ($errors as $error) {?>
+                    <li><?php echo $error ?></li>
+                    <?php }?>
+                  </ul>
                 </div>
                 <?php }?>
-                <form class="form-horizontal" action="<?php htmlspecialchars($_SERVER['PHP_SELF']) ?>" enctype="multipart/form-data" method="post" >
+                <form class="form-horizontal" action="<?php htmlspecialchars($_SERVER['PHP_SELF']) ?>" enctype="multipart/form-data" method="post" novalidate >
                   <div class="card-body">
                     <div class="form-group row">
                       <label
