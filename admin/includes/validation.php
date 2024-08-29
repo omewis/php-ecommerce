@@ -14,12 +14,10 @@ function checkDescription($description) {
 function checkStock($stock) {
     return filter_var($stock, FILTER_VALIDATE_INT) && $stock >= 0;
 }
-function checkCategory($category) {
-    return !empty($category) && preg_match("/^[a-zA-Z\s]+$/", $category);
-}
+
 function checkImage($image) {
     $allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
     $imageExtension = strtolower(pathinfo($image, PATHINFO_EXTENSION));
     return !empty($image) && in_array($imageExtension, $allowedExtensions);
 }
-
+?>

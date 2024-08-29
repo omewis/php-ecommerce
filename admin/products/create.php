@@ -43,9 +43,7 @@
     if (!checkStock($stock)) {
       $errors["stock"]="Stock should be positive number.<br>";
     }
-    if (!checkCategory($category_id)) {
-      $errors["category"]="category cant't be empty.<br>";
-    }
+  
     if (!checkImage($imageName)) {
      $errors["image"]="Please upload image.<br>";
     }
@@ -58,7 +56,7 @@
      VALUES ('$id','$name','$details','$description','$stock','$available','$price','$imageName','$discount','$category_id')
     ");
     if($insert_result){
-      move_uploaded_file($imageTmp,"../../uploads/images/$imageName");
+      move_uploaded_file($imageTmp,"../uploads/images/$imageName");
       }
     }  
   }
@@ -162,7 +160,7 @@
                       <label
                         for="details"
                         class="col-sm-3 text-end control-label col-form-label"
-                        >details</label
+                        >Details</label
                       >
                       <div class="col-sm-9">
                         <input

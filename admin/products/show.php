@@ -1,37 +1,44 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "ecommerce"; 
+    include '../includes/dbconnection.php';
 
-try {
-  $connect = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-} catch (Exception $e) {
- echo $e->getMessage();
- exit();
-}
-
-$result = $connect->query("SELECT 
+    if(isset($_GET['id'])){
+       $id=$_GET['id'];
+    }else{
+        echo "<h1 style='colore:red';text-align:center>Wronge Page!</h1>";
+        exit();
+    }
+    $product_result=$connect->query("SELECT 
     products.id, 
     products.name AS pro_name, 
+    products.details,
+    products.description,
     products.stock,
-    categories.name AS ctg_name 
+    categories.name AS ctg_name,
+    products.price,
+    products.discount,
+    products.available,
+    products.image    
 FROM 
     products 
 LEFT JOIN 
     categories 
 ON 
-    products.category_id = categories.id;");
+    products.category_id = categories.id WHERE products.id=$id");
 
-$products=$result->fetchAll(PDO::FETCH_ASSOC);
-
-
+    $product_data=$product_result->fetch(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
   <head>
   <?php include '../includes/head.php' ?>
+  <style>
+    th{
+        background-color: #3e5569 !important;
+        width: 25%;
+        color: #D1E9F6;
+    }
+   </style>
   </head>
 
   <body>
@@ -59,7 +66,7 @@ $products=$result->fetchAll(PDO::FETCH_ASSOC);
         <div class="page-breadcrumb">
           <div class="row">
             <div class="col-12 d-flex no-block align-items-center">
-              <h4 class="page-title">Products</h4>
+              <h4 class="page-title"><?php echo $product_data['pro_name']?></h4>
               <div class="ms-auto text-end">
                 <nav aria-label="breadcrumb">
                   <ol class="breadcrumb">
@@ -82,35 +89,57 @@ $products=$result->fetchAll(PDO::FETCH_ASSOC);
             <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                  <h5 class="card-title">All Products</h5>
+                  <h5 class="card-title"></h5>
                   <div class="table-responsive">
                     <table
                       id="zero_config"
                       class="table table-striped table-bordered"
                     >
-                      <thead>
-                        <tr>
-                          <th>ID</th>
-                          <th>Name</th>
-                          <th>Stock</th>
-                          <th>Category</th>
-                          <th> </th>
-                        </tr>
-                      </thead>
+                      
                       <tbody>
-                        <?php foreach($products as $product){?>
                         <tr>
-                          <td><?php echo $product['id']?></td>
-                          <td><?php echo $product['pro_name']?></td>
-                          <td><?php echo $product['stock']?></td>                                                
-                          <td><?php echo $product['ctg_name']?></td>
-                          <td> 
-                            <a href="show.php?id=<?php echo $product['id']?>" class="btn btn-primary">Show</a>
-                            <a href="edit.php" class="btn btn-success">Edit</a>
-                            <a href="delete.php?id=<?php echo $product['id']?>" class="btn btn-danger confirm">Delete</a>
-                            <?php } ?>
-                          </td>
+                           <th>ID</th>
+                           <td><?php echo $product_data['id']?></td>
                         </tr>
+                        <tr>
+                           <th>Name</th>
+                           <td><?php echo $product_data['pro_name']?></td>
+                        </tr>
+                        <tr>
+                           <th>Details</th>
+                           <td><?php echo $product_data['details']?></td>
+                        </tr>
+                        <tr>
+                           <th>Description</th>
+                           <td><?php echo $product_data['description']?></td>
+                        </tr>
+                        <tr>
+                           <th>Stock</th>
+                           <td><?php echo $product_data['stock']?></td>
+                        </tr>
+                        <tr>
+                           <th>Category</th>
+                           <td><?php echo $product_data['ctg_name']?></td>
+                        </tr>
+                        <tr>
+                           <th>Price</th>
+                           <td><?php echo $product_data['price']?></td>
+                        </tr>
+                        <tr>
+                           <th>Discount</th>
+                           <td><?php echo $product_data['discount']?></td>
+                        </tr>
+                        <tr>
+                           <th>Available</th>
+                           <td><?php echo $product_data['available']?></td>
+                        </tr>
+                        <tr>
+                           <th>Image</th>
+                           <td>
+                            <img src="../uploads/images/<?php echo $product_data['image'] ?>" width="150" height="100"> 
+                           </td>
+                        </tr>
+    
                       </tbody>
                     </table>
                   </div>
@@ -135,17 +164,6 @@ $products=$result->fetchAll(PDO::FETCH_ASSOC);
     <!-- End Wrapper -->
 
     <!-- All Jquery -->
-     <script>
-      let deleteBtn=document.querySelectorAll(".confirm");
-      for(let i=0; i<deleteBtn.length; i++){
-        deleteBtn[i].addEventListener("click",function(e){
-         let ans=confirm("Do you want to confirm deleting?");
-         if(!ans){
-          e.preventDefault();
-         }
-        })
-      }
-      </script>
     <?php include '../includes/scripts.php' ?>
     
   </body>
