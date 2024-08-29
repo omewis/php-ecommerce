@@ -106,7 +106,7 @@ $products=$result->fetchAll(PDO::FETCH_ASSOC);
                           <td><?php echo $product['ctg_name']?></td>
                           <td> 
                             <a href="show.php?id=<?php echo $product['id']?>" class="btn btn-primary">Show</a>
-                            <a href="edit.php" class="btn btn-success">Edit</a>
+                            <a href="edit.php?id=<?php echo $product['id']?>" class="btn btn-success">Edit</a>
                             <a href="delete.php?id=<?php echo $product['id']?>" class="btn btn-danger confirm">Delete</a>
                             <?php } ?>
                           </td>
