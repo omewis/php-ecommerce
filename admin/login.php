@@ -1,3 +1,22 @@
+<?php
+include 'includes/dbconnection.php';
+if($_SERVER['REQUEST_METHOD'] == "POST"){
+  $email=$_POST['email'];
+  $password=$_POST['password'];
+  $result=$connect->query("SELECT * FROM users WHERE email='$email' AND password='$password'");
+  $data=$result->fetch(PDO::FETCH_ASSOC);
+  $count=$result->rowCount();
+  if($count > 0){
+    session_start();
+    $_SESSION['user_id']=$data['id'];
+    header("location: products/index.php");
+  }else{
+    echo "You entered invalid email or password.";
+  }
+}
+
+?>
+
 <!DOCTYPE html>
 <html dir="ltr">
   <head>
