@@ -2,8 +2,8 @@
 
 $id=$_SESSION['user_id'];
 $user_result=$connect->query("SELECT user_name FROM users WHERE id='$id'");
-$user_data=$user_result->fetch(PDO::FETCH_ASSOC);
-$username=$user_data['user_name'];
+$user_nav_data=$user_result->fetch(PDO::FETCH_ASSOC);
+$username_nav=$user_nav_data['user_name'];
 ?>
 <nav class="navbar top-navbar navbar-expand-md navbar-dark">
           <div class="navbar-header" data-logobg="skin5">
@@ -82,7 +82,7 @@ $username=$user_data['user_name'];
                   aria-labelledby="navbarDropdown"
                 >
                   <a class="dropdown-item" href="javascript:void(0)"
-                    ><i class="mdi mdi-account me-1 ms-1"></i> <?php echo $username ?></a
+                    ><i class="mdi mdi-account me-1 ms-1"></i> <?php echo $username_nav ?></a
                   >
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="../logout.php"

@@ -24,10 +24,10 @@ include '../includes/session.php';
     if (!checkName($name)) {
       $errors["name"]="Invalid Name.<br>";
     }
-    if (!checkemail($email)) {
+    if (!checkEmail($email)) {
       $errors["email"]="Email cant't be empty.<br>";
       }
-    if (!checkemail($phone)) {
+    if (!checkPhone($phone)) {
         $errors["phone"]=" Invalid Phone Number.<br>";
       }
     
@@ -120,7 +120,7 @@ include '../includes/session.php';
                     </div>
                     <div class="form-group row">
                       <label
-                        for="name"
+                        for="user_name"
                         class="col-sm-3 text-end control-label col-form-label"
                         >Name</label
                       >
@@ -128,9 +128,9 @@ include '../includes/session.php';
                         <input
                           type="text"
                           class="form-control"
-                          id="name"
+                          id="user_name"
                           placeholder=" name here"
-                          name="name"
+                          name="user_name"
                         />
                       </div>
                     </div>
