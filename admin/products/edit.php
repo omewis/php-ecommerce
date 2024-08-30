@@ -24,7 +24,6 @@ if(isset($_GET['id'])){
   
   if($_SERVER['REQUEST_METHOD'] =="POST"){
   //prepare the values
-    $id=$_POST['id'];
     $name=$_POST['name'];
     $details=$_POST['details'];
     $description=$_POST['description'];
@@ -37,9 +36,7 @@ if(isset($_GET['id'])){
 
     //validation
     $errors=[];
-    if (!checkId($id)) {
-      $errors["id"]="Invalid ID.<br>";
-    }
+
     if (!checkName($name)) {
       $errors["name"]="Invalid Name.<br>";
     }
@@ -59,7 +56,7 @@ if(isset($_GET['id'])){
    if(empty($errors)){
       //update database
      $update_result=$connect->query
-     ("UPDATE `products` SET ,`name`='$name',`details`='$details',`description`='$description',`stock`='$stock',`available`='$available',`price`='$price',`discount`='$discount',`category_id`='$category_id' WHERE id=$id");
+     ("UPDATE `products` SET `name`='$name',`details`='$details',`description`='$description',`stock`='$stock',`available`='$available',`price`='$price',`discount`='$discount',`category_id`='$category_id' WHERE id=$id");
 
      }  
 }

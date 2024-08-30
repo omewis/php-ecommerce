@@ -1,23 +1,35 @@
 <?php
-include '../includes/session.php';
-include '../includes/dbconnection.php';
+    include '../includes/session.php';
+    include '../includes/dbconnection.php';
 
-$result = $connect->query("SELECT 
+    if(isset($_GET['id'])){
+       $id=$_GET['id'];
+    }else{
+        echo "<h1 style='colore:red';text-align:center>Wronge Page!</h1>";
+        exit();
+    }
+    $category_result=$connect->query("SELECT 
     categories.id, 
-    categories.name
+    categories.name,
+    categories.description
 FROM 
     categories 
-");
+WHERE categories.id=$id");
 
-$categories=$result->fetchAll(PDO::FETCH_ASSOC);
-
-
+    $category_data=$category_result->fetch(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
   <head>
   <?php include '../includes/head.php' ?>
+  <style>
+    th{
+        background-color: #3e5569 !important;
+        width: 25%;
+        color: #D1E9F6;
+    }
+   </style>
   </head>
 
   <body>
@@ -45,7 +57,7 @@ $categories=$result->fetchAll(PDO::FETCH_ASSOC);
         <div class="page-breadcrumb">
           <div class="row">
             <div class="col-12 d-flex no-block align-items-center">
-              <h4 class="page-title">Categories</h4>
+              <h4 class="page-title"><?php echo $category_data['name']?></h4>
               <div class="ms-auto text-end">
                 <nav aria-label="breadcrumb">
                   <ol class="breadcrumb">
@@ -68,32 +80,25 @@ $categories=$result->fetchAll(PDO::FETCH_ASSOC);
             <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                  <h5 class="card-title">All Categories</h5>
+                  <h5 class="card-title"></h5>
                   <div class="table-responsive">
                     <table
                       id="zero_config"
                       class="table table-striped table-bordered"
                     >
-                      <thead>
-                        <tr>
-                          <th>ID</th>
-                          <th>Name</th>
-                          
-                          <th> </th>
-                        </tr>
-                      </thead>
+                      
                       <tbody>
-                        <?php foreach($categories as $category){?>
                         <tr>
-                          <td><?php echo $category['id']?></td>
-                          <td><?php echo $category['name']?></td>
-                                                                         
-                          <td> 
-                            <a href="show.php?id=<?php echo $category['id']?>" class="btn btn-primary">Show</a>
-                            <a href="edit.php?id=<?php echo $category['id']?>" class="btn btn-success">Edit</a>
-                            <a href="delete.php?id=<?php echo $category['id']?>" class="btn btn-danger confirm">Delete</a>
-                            <?php } ?>
-                          </td>
+                           <th>ID</th>
+                           <td><?php echo $category_data['id']?></td>
+                        </tr>
+                        <tr>
+                           <th>Name</th>
+                           <td><?php echo $category_data['name']?></td>
+                        </tr>
+                        <tr>
+                           <th>Description</th>
+                           <td><?php echo $category_data['description']?></td>
                         </tr>
                       </tbody>
                     </table>
@@ -119,17 +124,6 @@ $categories=$result->fetchAll(PDO::FETCH_ASSOC);
     <!-- End Wrapper -->
 
     <!-- All Jquery -->
-     <script>
-      let deleteBtn=document.querySelectorAll(".confirm");
-      for(let i=0; i<deleteBtn.length; i++){
-        deleteBtn[i].addEventListener("click",function(e){
-         let ans=confirm("Do you want to confirm deleting?");
-         if(!ans){
-          e.preventDefault();
-         }
-        })
-      }
-      </script>
     <?php include '../includes/scripts.php' ?>
     
   </body>
