@@ -17,7 +17,7 @@
                   class="sidebar-link has-arrow waves-effect waves-dark"
                   href="javascript:void(0)"
                   aria-expanded="false"
-                  ><i class="mdi mdi-receipt"></i
+                  ><i class="mdi mdi-format-list-bulleted"></i
                   ><span class="hide-menu">Products</span></a
                 >
                 <ul aria-expanded="false" class="collapse first-level">
@@ -61,6 +61,42 @@
                   </li>
                 </ul>
               </li>
+              <!-- Users Section -->
+      <li class="sidebar-item">
+        <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+          <i class="mdi mdi-account-multiple"></i><span class="hide-menu">Users</span>
+        </a>
+        <ul aria-expanded="false" class="collapse first-level">
+          <li class="sidebar-item">
+            <a href="../users/" class="sidebar-link">
+              <i class="mdi mdi-account-outline"></i><span class="hide-menu"> All Users </span>
+            </a>
+          </li>
+          <li class="sidebar-item">
+            <a href="../users/create.php" class="sidebar-link">
+              <i class="mdi mdi-account-plus"></i><span class="hide-menu"> Add User </span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <!-- Orders Section -->
+      <li class="sidebar-item">
+        <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+          <i class="mdi mdi-cart"></i><span class="hide-menu">Orders</span>
+        </a>
+        <ul aria-expanded="false" class="collapse first-level">
+          <li class="sidebar-item">
+            <a href="../orders/" class="sidebar-link">
+              <i class="mdi mdi-cart-outline"></i><span class="hide-menu"> All Orders </span>
+            </a>
+          </li>
+          <li class="sidebar-item">
+            <a href="../orders/create.php" class="sidebar-link">
+              <i class="mdi mdi-cart-plus"></i><span class="hide-menu"> Add Order </span>
+            </a>
+          </li>
+        </ul>
+      </li>
             </ul>
           </nav>
           <!-- End Sidebar navigation -->

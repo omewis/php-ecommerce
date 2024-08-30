@@ -1,9 +1,9 @@
 <?php
 
 $id=$_SESSION['user_id'];
-$user_result=$connect->query("SELECT first_name FROM users WHERE id='$id'");
+$user_result=$connect->query("SELECT user_name FROM users WHERE id='$id'");
 $user_data=$user_result->fetch(PDO::FETCH_ASSOC);
-$username=$user_data['first_name'];
+$username=$user_data['user_name'];
 ?>
 <nav class="navbar top-navbar navbar-expand-md navbar-dark">
           <div class="navbar-header" data-logobg="skin5">

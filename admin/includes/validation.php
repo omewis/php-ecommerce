@@ -20,4 +20,7 @@ function checkImage($image) {
     $imageExtension = strtolower(pathinfo($image, PATHINFO_EXTENSION));
     return !empty($image) && in_array($imageExtension, $allowedExtensions);
 }
+function checkPhone($phone) {
+    return preg_match("/^\+?[0-9]{7,15}$/", $phone);
+}
 ?>
