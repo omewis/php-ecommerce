@@ -1,0 +1,54 @@
+/* Container for the products */
+.products-container {
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap to the next line if needed */
+    justify-content: flex-start; /* Align items to the start of the container */
+    gap: 20px; /* Space between items */
+}
+
+/* Individual product item styling */
+.product-item {
+    flex: 1 1 calc(33.333% - 20px); /* Adjust the width of each item */
+    box-sizing: border-box;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center content horizontally */
+    text-align: center; /* Center text */
+    border: 1px solid #ddd; /* Optional: add a border for better visibility */
+    border-radius: 8px; /* Optional: round corners for better styling */
+    padding: 10px; /* Optional: add padding inside the item */
+    background-color: #fff; /* Optional: background color for items */
+    transition: transform 0.2s; /* Optional: smooth hover effect */
+}
+
+.product-item:hover {
+    transform: scale(1.05); /* Optional: slight zoom effect on hover */
+}
+
+/* Ensure images fit well in their container */
+.product-item img {
+    max-width: 100%;
+    height: auto;
+    border-bottom: 1px solid #ddd; /* Optional: add a border below the image */
+    margin-bottom: 10px; /* Optional: space between image and text */
+}
+
+/* Styling for the buttons */
+.btn {
+    text-decoration: none;
+    color: white;
+    background-color: green;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-success {
+    background-color: #28a745;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+}

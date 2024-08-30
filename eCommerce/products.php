@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,7 +16,7 @@
     <link rel="stylesheet" href="./assets/css/products.css">
     <link rel="stylesheet" href="./assets/css/rpsproducts.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
-
+<link rel="stylesheet" href="./assets/css/products2.css">
     <style>
         .checkbox-wrapper {
             margin-bottom: 10px;
@@ -105,6 +106,7 @@
         </div>
       </div>
 
+
     <!-- slider -->
     <div id="slider">
         <div id="drop-of-water">
@@ -160,6 +162,8 @@
                     </div>
                 </div>
             </div>
+           
+
             <div class="section-about">
                 <div class="sort-products">
                     <div class="sort-product-item sort-product">
@@ -187,10 +191,16 @@
                 <div class="container w-100 d-flex justify-content-center">
                     <div id="productsContainerTwo" class="row"></div>
                 </div>
+                <!--display products from database-->
+                <?php
+            include '../ecommerce/project.php';
+            ?> 
             </div>
+            
         </div>
+       
     </div>
-
+   
     <script src="./assets/js/index.js"></script>
     <script src="./assets/js/ProductFiltiration.js"></script>
     <script src="./assets/js/addproducttocart.js"></script>
@@ -277,6 +287,7 @@
 
         displayProducts(); // Call this function to display the initial products
     </script>
+          
   <div id="footer">
     <div id="drop-of-water1">
       <div class="drop-of-water">

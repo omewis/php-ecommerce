@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="./assets/css/style.css" />
   <link rel="stylesheet" href="./assets/css/modal.css" />
   <link rel="stylesheet" href="./assets/css/responsive.css" />
+  <link rel="stylesheet" href="./assets/css/products2.css"
   <script src="https://kit.fontawesome.com/4a90be2ee9.js" crossorigin="anonymous"></script>
 </head>
 
@@ -24,12 +25,12 @@
         <div class="nav-left">
           <ul id="nav">
             <li class="nav-item">
-              <a href="index.html" class="header-nav-home">Home</a>
+              <a href="index.php" class="header-nav-home">Home</a>
             </li>
 
             <li class="nav-item nav-product">
               <div class="nav-product">
-                <a href="./products.html">Products
+                <a href="./products.php">Products
                   <i class="fa-solid fa-caret-down nav-arrow-icon"></i></a>
               </div>
               <ul class="subnav" id="categoryList">
@@ -45,14 +46,14 @@
           </ul>
         </div>
         <div class="nav-between-logo">
-          <a href="./index.html">
+          <a href="./index.php">
             <img src="./assets/img/logo.png" , width="200px",height="180px" alt="logo" class="nav-logo" />
           </a>
         </div>
         <div class="nav-right">
           <ul class="nav-right-list">
             <li class="list--item">
-              <a href="cart.html" class="navright-item ti-bag js-btn-cartshopping">
+              <a href="cart.php"class="navright-item ti-bag js-btn-cartshopping">
                 <p class="notification js--cartnotification">0</p>
               </a>
             </li>
@@ -88,6 +89,8 @@
         <div class="sectionone-item">
           <div class="item-cate">
             <img src="./assets/images/head_.jpg" alt="" class="cate2" />
+            <h5 class=\"card-title\">$productname</h5>
+            
             <p></p>
           </div>
         </div>
@@ -132,27 +135,39 @@
             <div class="sectiontwo-item js-nameproduct" id="1">
                 <div class="item-sp">
                     <div class="item-rprice">
+                   
                         <p></p>
                     </div>
                     <div class="item-loveandsetting">
-                        <a href="">
+                       <!-- <a href="">
                             <button class="ti-heart js__favorite"></button>
-                        </a>
+                        </a>-->
                         <a href="guava.html?id=${product.id}" >
-                            <button><img src="./assets/images/icons8-cart-32.png" alt="Cart Logo"></button>
+                           <!--<button><img src="./assets/images/icons8-cart-32.png" alt="Cart Logo"></button>-->
                         </a>
                     </div>
-                    <a href="cart.html?id=${product.id}" >
+                    <?php
+                    include '../ecommerce/project.php';
+                    ?>          
+                    <!--<a href="cart.html?id=${product.id}" >
                         <img src="./assets/images/Tv3.png" alt="Phone">
                     </a>
                 </div>
-                <div class="item-sp">
+                <!--<div class="item-sp">
                     <a href="cart.html?id=${product.id}" class="item-sp--name">Samsung TV</a>
                     <div class="item-sp-price">
                         <p class="item-sp--cost">2.000<a>$</a></p>
-                  
                     </div>
-                </div>
+                        <h6>
+                          <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                          <i class="far fa-star"></i>
+                      </h6>
+                      </div>
+                   <button type="submit" name="add">Add To Cart <i class="navright-item ti-bag js-btn-cartshopping"></i></button>     
+              
             </div>
             <div class="sectiontwo-item js-nameproduct" id="2">
                 <div class="item-rprice">
@@ -163,9 +178,9 @@
                         <button class="ti-heart "></button>
                     </a>
                     <a href="cart.html?id=${product.id}" >
-                        <button><img src="./assets/images/icons8-cart-32.png" alt="Cart Logo"></button>
-                    </a>
-                </div>
+                        <!--<button><img src="./assets/images/icons8-cart-32.png" alt="Cart Logo"></button>-->
+                    <!--</a>
+                <!--</div>
                 <div class="item-sp">
                     <a href="cart.html?id=${product.id}" >
                         <img src="./assets/images/gaming-laptop-Q9Bw1n2-600.jpg" alt="phonr">
@@ -177,7 +192,15 @@
                         <p class="item-sp--cost">4.000<a>$</a></p>
       
                     </div>
+                    <h6>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="far fa-star"></i>
+                  </h6>
                 </div>
+                <button type="submit" class="btn btn-success" name="add">Add To Cart <i class="navright-item ti-bag js-btn-cartshopping"></i></button>
             </div>
             <div class="sectiontwo-item js-nameproduct" id="3">
                 <div class="item-rprice">
@@ -188,8 +211,8 @@
                         <button class="ti-heart"></button>
                     </a>
                     <a href="cart.html?id=${product.id}" >
-                        <button><img src="./assets/images/icons8-cart-32.png" alt="Cart Logo"></button>
-                    </a>
+                        <!--<button><img src="./assets/images/icons8-cart-32.png" alt="Cart Logo"></button>-->
+                    <!--</a>
                 </div>
                 <div class="item-sp">
                     <a href="guava.html?id=8" >
@@ -202,7 +225,15 @@
                         <p class="item-sp--cost">850<a>$</a></p>
                        
                     </div>
+                    <h6>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="far fa-star"></i>
+                  </h6>
                 </div>
+               <button type="submit" name="add">Add To Cart <i class="navright-item ti-bag js-btn-cartshopping"></i></button>
             </div>
             <div class="sectiontwo-item js-nameproduct" id="4">
                 <div class="item-rprice">
@@ -211,8 +242,8 @@
                 <div class="item-loveandsetting">
                     <button class="ti-heart js__btnfavorite"></button>
                     <a href="cart.html?id=${product.id}">
-                        <button><img src="./assets/images/icons8-cart-32.png" alt="Cart Logo"></button>
-                    </a>
+                        <!--<button><img src="./assets/images/icons8-cart-32.png" alt="Cart Logo"></button>-->
+                    <!--</a>
                 </div>
                 <div class="item-sp">
                     <a href="guava.html?id=2">
@@ -225,8 +256,15 @@
                         <p class="item-sp--cost">1.000<a>$</a></p>
                    
                     </div>
+                    <h6>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="far fa-star"></i>
+                  </h6>
                 </div>
-                
+                <button type="submit" name="add">Add To Cart <i class="navright-item ti-bag js-btn-cartshopping"></i></button> 
             </div>
             <div class="sectiontwo-item js-nameproduct" id="4">
               <div class="item-rprice">
@@ -235,8 +273,8 @@
               <div class="item-loveandsetting">
                   <button class="ti-heart js__btnfavorite"></button>
                   <a href="cart.html?id=${product.id}" >
-                      <button><img src="./assets/images/icons8-cart-32.png" alt="Cart Logo"></button>
-                  </a>
+                      <!--<button><img src="./assets/images/icons8-cart-32.png" alt="Cart Logo"></button>-->
+                  <!--</a>
               </div>
               <div class="item-sp">
                   <a href="cart.html?id=${product.id}">
@@ -249,10 +287,17 @@
                       <p class="item-sp--cost">3.000<a>$</a></p>
                      
                   </div>
+                  <h6>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>
+                </h6> 
               </div>
-              
+              <button type="submit" name="add">Add To Cart <i class="navright-item ti-bag js-btn-cartshopping"></i></button>
           </div>
-        </div>
+        </div>-->
     </div>
     </div>
 
@@ -532,7 +577,7 @@
         productsContainer.innerHTML = ''; // Clear previous content
 
         products.forEach(product => {
-            productsContainer.innerHTML += `
+            productsContainer.innerHTML += 
                 <div class="sectionfour-item sectiontwo-item">
                     
                     <div class="item-sp">
@@ -547,7 +592,7 @@
                             
                         </div>
                     </div>
-                </div>`;
+                </div>;
         });
     }
 
@@ -712,7 +757,7 @@
             listItem.className = 'subnav-item';
 
             let link = document.createElement('a');
-            link.href = `./productsOfCategory.html?id=${category.id}`; 
+            link.href = productsOfCategory.html?id=($category.id);
             link.id = 'category';
             link.textContent = category.name;
 
