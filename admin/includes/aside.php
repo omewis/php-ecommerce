@@ -90,11 +90,7 @@
               <i class="mdi mdi-cart-outline"></i><span class="hide-menu"> All Orders </span>
             </a>
           </li>
-          <li class="sidebar-item">
-            <a href="../orders/create.php" class="sidebar-link">
-              <i class="mdi mdi-cart-plus"></i><span class="hide-menu"> Add Order </span>
-            </a>
-          </li>
+          
         </ul>
       </li>
             </ul>

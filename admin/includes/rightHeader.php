@@ -15,7 +15,7 @@ $username_nav=$user_nav_data['user_name'];
               <b class="logo-icon ps-2">
                 <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                 <!-- Dark Logo icon -->
-                <img src="../assets/images/logo-icon.png" alt="homepage" class="light-logo" width="25"/>
+                <img src="../assets/images/logo.png" alt="homepage" class="light-logo" width="60"/>
               </b>
               <!--End Logo icon -->
               <!-- Logo text -->
@@ -71,10 +71,10 @@ $username_nav=$user_nav_data['user_name'];
                   aria-expanded="false"
                 >
                   <img
-                    src="../assets/images/users/1.jpg"
+                    src="../assets/images/users/user.png"
                     alt="user"
                     class="rounded-circle"
-                    width="31"
+                    width="36"
                   />
                 </a>
                 <ul
