@@ -31,8 +31,9 @@ foreach($products as $product) {
     <div class='product-item'>
         <div class='item-sp'>
             <a href='guava.html?id={$product['id']}'>
-                <img src='{$product['image']}' alt='{$product['name']}' />
+                <img src='../admin/uploads/images/{$product['image']}'' alt='{$product['name']}' />
             </a>
+            
         </div>
         <div class='item-sp'>
             <a href='guava.html?id={$product['id']}' class='item-sp--name'>{$product['name']}</a>
@@ -51,6 +52,19 @@ foreach($products as $product) {
 }
 echo "</div>";
 
+
+
 // Close the PDO connection
 $connect = null;
 ?>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <img src="/admin/uploads/images/iphone.jpeg" alt="">
+</body>
+</html>

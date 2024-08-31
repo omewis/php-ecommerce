@@ -1,3 +1,19 @@
+<?PHP 
+include '../admin/includes/session.php';
+ include '../admin/includes/dbconnection.php';
+
+$sql = "SELECT * FROM categories";
+try {
+  $stmt = $connect->query($sql);
+} catch (Exception $e) {
+  die("Query failed: " . $e->getMessage());
+}
+
+$categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,7 +31,8 @@
   <link rel="stylesheet" href="./assets/css/modal.css" />
   <link rel="stylesheet" href="./assets/css/responsive.css" />
   <link rel="stylesheet" href="./assets/css/products2.css"
-  <script src="https://kit.fontawesome.com/4a90be2ee9.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/4a90be2ee9.js" crossorigin="anonymous">
+  </script>
 </head>
 
 <body class="mainbody">
@@ -29,13 +46,19 @@
             </li>
 
             <li class="nav-item nav-product">
-              <div class="nav-product">
-                <a href="./products.php">Products
-                  <i class="fa-solid fa-caret-down nav-arrow-icon"></i></a>
-              </div>
-              <ul class="subnav" id="categoryList">
-                <li class="subnav-item"><a href="./subnavvagetable.html" id="category">Headphones</a></li>
-              </ul>
+                <div class="nav-product">
+                    <a href="./products.php">Products
+                        <i class="fa-solid fa-caret-down nav-arrow-icon"></i></a>
+                </div>
+                <ul class="subnav" id="categoryList">
+                    <?php foreach ($categories as $category): ?>
+                    <li class="subnav-item">
+                        <a href="./productsOfCategory.php?category_id=<?php echo $category['id']; ?>">
+                            <?php echo htmlspecialchars($category['name']); ?>
+                        </a>
+                    </li>
+                    <?php endforeach; ?>
+                </ul>
             </li>
             <li class="nav-item">
               <a href="./news.html">About</a>
@@ -47,13 +70,13 @@
         </div>
         <div class="nav-between-logo">
           <a href="./index.php">
-            <img src="./assets/img/logo.png" , width="200px",height="180px" alt="logo" class="nav-logo" />
+            <img src="./assets/img/logo.png" , width="200px" ,height="180px" alt="logo" class="nav-logo" />
           </a>
         </div>
         <div class="nav-right">
           <ul class="nav-right-list">
             <li class="list--item">
-              <a href="cart.php"class="navright-item ti-bag js-btn-cartshopping">
+              <a href="cart.php" class="navright-item ti-bag js-btn-cartshopping">
                 <p class="notification js--cartnotification">0</p>
               </a>
             </li>
@@ -90,7 +113,7 @@
           <div class="item-cate">
             <img src="./assets/images/head_.jpg" alt="" class="cate2" />
             <h5 class=\"card-title\">$productname</h5>
-            
+
             <p></p>
           </div>
         </div>
@@ -123,33 +146,33 @@
       <div class="sectiontwo width_86 width_94 m-lr-auto">
         <!-- SECTION--TWO.TITLE -->
         <div class="sectiontwo-title">
-            <div class="title-about">
-                <a href="">
-                    <img src="./assets/images/logorprice.png" alt="" />
-                    <p>Top Sellers</p>
-                </a>
-            </div>
+          <div class="title-about">
+            <a href="">
+              <img src="./assets/images/logorprice.png" alt="" />
+              <p>Top Sellers</p>
+            </a>
+          </div>
         </div>
         <!-- SECTION--TWO.ABOUT -->
         <div class="sectiontwo-about">
-            <div class="sectiontwo-item js-nameproduct" id="1">
-                <div class="item-sp">
-                    <div class="item-rprice">
-                   
-                        <p></p>
-                    </div>
-                    <div class="item-loveandsetting">
-                       <!-- <a href="">
+          <div class="sectiontwo-item js-nameproduct" id="1">
+            <div class="item-sp">
+              <div class="item-rprice">
+
+                <p></p>
+              </div>
+              <div class="item-loveandsetting">
+                <!-- <a href="">
                             <button class="ti-heart js__favorite"></button>
                         </a>-->
-                        <a href="guava.html?id=${product.id}" >
-                           <!--<button><img src="./assets/images/icons8-cart-32.png" alt="Cart Logo"></button>-->
-                        </a>
-                    </div>
-                    <?php
-                    include '../ecommerce/project.php';
-                    ?>          
-                    <!--<a href="cart.html?id=${product.id}" >
+                <a href="guava.html?id=${product.id}">
+                  <!--<button><img src="./assets/images/icons8-cart-32.png" alt="Cart Logo"></button>-->
+                </a>
+              </div>
+              <?php
+              include '../ecommerce/project.php';
+              ?>
+              <!--<a href="cart.html?id=${product.id}" >
                         <img src="./assets/images/Tv3.png" alt="Phone">
                     </a>
                 </div>
@@ -179,7 +202,7 @@
                     </a>
                     <a href="cart.html?id=${product.id}" >
                         <!--<button><img src="./assets/images/icons8-cart-32.png" alt="Cart Logo"></button>-->
-                    <!--</a>
+              <!--</a>
                 <!--</div>
                 <div class="item-sp">
                     <a href="cart.html?id=${product.id}" >
@@ -212,7 +235,7 @@
                     </a>
                     <a href="cart.html?id=${product.id}" >
                         <!--<button><img src="./assets/images/icons8-cart-32.png" alt="Cart Logo"></button>-->
-                    <!--</a>
+              <!--</a>
                 </div>
                 <div class="item-sp">
                     <a href="guava.html?id=8" >
@@ -243,7 +266,7 @@
                     <button class="ti-heart js__btnfavorite"></button>
                     <a href="cart.html?id=${product.id}">
                         <!--<button><img src="./assets/images/icons8-cart-32.png" alt="Cart Logo"></button>-->
-                    <!--</a>
+              <!--</a>
                 </div>
                 <div class="item-sp">
                     <a href="guava.html?id=2">
@@ -274,7 +297,7 @@
                   <button class="ti-heart js__btnfavorite"></button>
                   <a href="cart.html?id=${product.id}" >
                       <!--<button><img src="./assets/images/icons8-cart-32.png" alt="Cart Logo"></button>-->
-                  <!--</a>
+              <!--</a>
               </div>
               <div class="item-sp">
                   <a href="cart.html?id=${product.id}">
@@ -298,37 +321,37 @@
               <button type="submit" name="add">Add To Cart <i class="navright-item ti-bag js-btn-cartshopping"></i></button>
           </div>
         </div>-->
-    </div>
-    </div>
+            </div>
+          </div>
 
-  </div>
-
-
-
-
-  </div>
-
-  <div class="sectionfour width_86 width_90 m-lr-auto">
-    
-    <div class="sectionfour-about" id="productsContainer">
-      <div class="sectionfour-item sectiontwo-item">
-       
-        <div class="item-sp">
-          <a href="./redpeachUSA.html">
-            <img src="./assets/images/accessor1.png" alt="Red Peach USA" />
-          </a>
         </div>
-        <div class="item-sp">
-          <a href="./redpeachUSA.html" class="item-sp--name">JBL Headphone</a>
-          <div class="item-sp-price">
-            <p class="item-sp--cost">149<a>$</a></p>
-            
+
+
+
+
+      </div>
+
+      <div class="sectionfour width_86 width_90 m-lr-auto">
+
+        <div class="sectionfour-about" id="productsContainer">
+          <div class="sectionfour-item sectiontwo-item">
+
+            <div class="item-sp">
+              <a href="./redpeachUSA.html">
+                <img src="./assets/images/accessor1.png" alt="Red Peach USA" />
+              </a>
+            </div>
+            <div class="item-sp">
+              <a href="./redpeachUSA.html" class="item-sp--name">JBL Headphone</a>
+              <div class="item-sp-price">
+                <p class="item-sp--cost">149<a>$</a></p>
+
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  </div>
   </div>
   </div>
   </div>
@@ -367,12 +390,12 @@
       </div>
       <div class="footer-item footer-introduction">
         <div class="logo">
-          <img src="./assets/img/logo.png" width="200px",height="180px" alt="">
+          <img src="./assets/img/logo.png" width="200px" ,height="180px" alt="">
         </div>
         <div class="introduction">
-          The Tech Tree Website is an innovative online platform designed to cater to the needs of technology enthusiasts, 
+          The Tech Tree Website is an innovative online platform designed to cater to the needs of technology enthusiasts,
           professionals, and learners alike. It serves as a comprehensive resource hub that not only provides up-to-date
-           information on the latest technological advancements</div>
+          information on the latest technological advancements</div>
         <div class="logofooter">
           <img src="./assets/images/logo7.png" alt="">
         </div>
@@ -423,30 +446,30 @@
         <div class="inner__authform--body">
           <div class="inner__authform--form">
             <div class="authform__item">
-                <div>
-                    <input type="text" name="" placeholder="Full name" id="contact-name" onkeyup="validateName()">
-                    <span id="name-error"></span>
-                </div>
-                <div>
-                    <input type="text" name="" placeholder="Phone number" id="contact-phone" onkeyup="validatePhone()">
-                    <span id="phone-error"></span>
-                </div>
-                <div>
-                    <input type="text" name="" placeholder="E-mail" id="contact-email" onkeyup="validateEmail()">
-                    <span id="email-error"></span>
-                </div>
-                <div>
-                    <input type="password" name="" placeholder="Password" id="contact-password" onkeyup="validatePassword()">
-                    <span id="password-error"></span>
-                </div>
+              <div>
+                <input type="text" name="" placeholder="Full name" id="contact-name" onkeyup="validateName()">
+                <span id="name-error"></span>
+              </div>
+              <div>
+                <input type="text" name="" placeholder="Phone number" id="contact-phone" onkeyup="validatePhone()">
+                <span id="phone-error"></span>
+              </div>
+              <div>
+                <input type="text" name="" placeholder="E-mail" id="contact-email" onkeyup="validateEmail()">
+                <span id="email-error"></span>
+              </div>
+              <div>
+                <input type="password" name="" placeholder="Password" id="contact-password" onkeyup="validatePassword()">
+                <span id="password-error"></span>
+              </div>
             </div>
             <div class="authform__help">
-                <button class="authform__help--register" onclick="return handleRegistration()">Sign In</button>
+              <button class="authform__help--register" onclick="return handleRegistration()">Sign In</button>
             </div>
             <div class="authform__separate">
-                <span>Or sign in with</span>
+              <span>Or sign in with</span>
             </div>
-        </div>
+          </div>
         </div>
 
         <div class="inner__authform--socials">
@@ -517,88 +540,102 @@
           <h4>CART</h4>
           <button class="ti-close cartshopping--icon js-btn-close"></button>
         </div>
-     
-    <div class="modal__sidebar js-modal__sidebar">
-      <div class="modal__sidebar--inner">
-        <div class="modal__sidebar--nav">
-          <ul class="sidebar__login">
-            <li class="sidebar__login-inner">
-              <span class="sidebar--btn-login js-btn-loginRps"><i class="fa-solid fa-right-to-bracket"></i>Login</span>
-            </li>
-          </ul>
-          <ul class="modal__sidebar--list">
-            <li class="modal__sidebar--item">
-              <a href="./index.html">
-                <i class="fa-solid fa-house"></i>Home
-              </a>
-            </li>
-            <li class="modal__sidebar--item">
-              <a href="./projeeectt/products.html">
-                <i class="fa-solid fa-clipboard-list"></i>Products</a>
-            </li>
-            <li class="modal__sidebar--item">
-              <a href="./news.html">
-                <i class="fa-solid fa-newspaper"></i>News</a>
-            </li>
-            <li class="modal__sidebar--item">
-              <a href="./contact.html">
-                <i class="fa-solid fa-square-phone"></i>Contact</a>
-            </li>
-            <li class="modal__sidebar--item">
-              <a href="./introduction.html">
-                <i class="fa-solid fa-circle-info"></i>Introduction</a>
-            </li>
-          </ul>
+
+        <div class="modal__sidebar js-modal__sidebar">
+          <div class="modal__sidebar--inner">
+            <div class="modal__sidebar--nav">
+              <ul class="sidebar__login">
+                <li class="sidebar__login-inner">
+                  <span class="sidebar--btn-login js-btn-loginRps"><i class="fa-solid fa-right-to-bracket"></i>Login</span>
+                </li>
+              </ul>
+              <ul class="modal__sidebar--list">
+                <li class="modal__sidebar--item">
+                  <a href="./index.html">
+                    <i class="fa-solid fa-house"></i>Home
+                  </a>
+                </li>
+                <li class="modal__sidebar--item">
+                  <a href="./projeeectt/products.html">
+                    <i class="fa-solid fa-clipboard-list"></i>Products</a>
+                </li>
+                <li class="modal__sidebar--item">
+                  <a href="./news.html">
+                    <i class="fa-solid fa-newspaper"></i>News</a>
+                </li>
+                <li class="modal__sidebar--item">
+                  <a href="./contact.html">
+                    <i class="fa-solid fa-square-phone"></i>Contact</a>
+                </li>
+                <li class="modal__sidebar--item">
+                  <a href="./introduction.html">
+                    <i class="fa-solid fa-circle-info"></i>Introduction</a>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  </div>
 
 
-  <div id="userGreeting"></div>
-
-  
-  <!-- JAVASCRIP -->
-  <script src="./assets/js/index.js"></script>
-  <script src="./assets/js/addproducttocart.js"></script>
-  <script src="./assets/js/addproducttofavorite.js"></script>
+    <div id="userGreeting"></div>
 
 
-  <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <!-- JAVASCRIP -->
+    <script src="./assets/js/index.js"></script>
+    <script src="./assets/js/addproducttocart.js"></script>
+    <script src="./assets/js/addproducttofavorite.js"></script>
 
 
-  <script>
-    // Function to display products from local storage
-    function displayProducts() {
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+
+    <script>
+      // Function to display products from local storage
+      function displayProducts() {
         var productsContainer = document.getElementById('productsContainer');
         var products = JSON.parse(localStorage.getItem('myProducts')) || [];
-        
+
         productsContainer.innerHTML = ''; // Clear previous content
 
         products.forEach(product => {
-            productsContainer.innerHTML += 
-                <div class="sectionfour-item sectiontwo-item">
-                    
-                    <div class="item-sp">
-                        <a href="guava.html?id=${product.id}">
-                            <img src="${product.image}" alt="${product.name}" />
-                        </a>
-                    </div>
-                    <div class="item-sp">
-                        <a href="./guava.html?id=${product.id}" class="item-sp--name">${product.name}</a>
-                        <div class="item-sp-price">
-                            <p class="item-sp--cost">${product.price}<a>$</a></p>
-                            
-                        </div>
-                    </div>
-                </div>;
+          productsContainer.innerHTML +=
+            <
+            div class = "sectionfour-item sectiontwo-item" >
+
+            <
+            div class = "item-sp" >
+            <
+            a href = "guava.html?id=${product.id}" >
+            <
+            img src = "${product.image}"
+          alt = "${product.name}" / >
+            <
+            /a> <
+            /div> <
+            div class = "item-sp" >
+            <
+            a href = "./guava.html?id=${product.id}"
+          class = "item-sp--name" > $ {
+            product.name
+          } < /a> <
+          div class = "item-sp-price" >
+          <
+          p class = "item-sp--cost" > $ {
+            product.price
+          } < a > $ < /a></p >
+
+            <
+            /div> <
+            /div> <
+            /div>;
         });
-    }
+      }
 
-    document.addEventListener('DOMContentLoaded', displayProducts);
+      document.addEventListener('DOMContentLoaded', displayProducts);
 
-    function handleRegistration(event) {
+      function handleRegistration(event) {
         event.preventDefault(); // Prevent default form submission
 
         // Retrieve data from form fields
@@ -607,12 +644,17 @@
         var email = document.getElementById('contact-email').value;
         var password = document.getElementById('contact-password').value;
 
-        console.log('Form Data:', { fullName, phoneNumber, email, password });
+        console.log('Form Data:', {
+          fullName,
+          phoneNumber,
+          email,
+          password
+        });
 
         // Validate form fields
         if (!validateForm()) {
-            console.log('Validation failed');
-            return; 
+          console.log('Validation failed');
+          return;
         }
 
         // Generate a new user ID
@@ -623,11 +665,11 @@
         console.log('New User ID:', newId);
 
         var newUser = {
-            id: newId,
-            fullName: fullName,
-            phoneNumber: phoneNumber,
-            email: email,
-            password: password
+          id: newId,
+          fullName: fullName,
+          phoneNumber: phoneNumber,
+          email: email,
+          password: password
         };
 
         users.push(newUser);
@@ -640,9 +682,9 @@
         document.getElementById('contact-phone').value = '';
         document.getElementById('contact-email').value = '';
         document.getElementById('contact-password').value = '';
-    }
+      }
 
-    function validateForm() {
+      function validateForm() {
         var name = document.getElementById('contact-name').value;
         var phone = document.getElementById('contact-phone').value;
         var email = document.getElementById('contact-email').value;
@@ -657,36 +699,36 @@
 
         //VALIDATION
         if (name.trim() === '') {
-            document.getElementById('name-error').textContent = 'Full name is required.';
-            isValid = false;
+          document.getElementById('name-error').textContent = 'Full name is required.';
+          isValid = false;
         }
 
         if (phone.trim() === '') {
-            document.getElementById('phone-error').textContent = 'Phone number is required.';
-            isValid = false;
+          document.getElementById('phone-error').textContent = 'Phone number is required.';
+          isValid = false;
         }
 
         if (!validateEmail(email)) {
-            document.getElementById('email-error').textContent = 'Invalid email address.';
-            isValid = false;
+          document.getElementById('email-error').textContent = 'Invalid email address.';
+          isValid = false;
         }
 
         if (password.length < 6) {
-            document.getElementById('password-error').textContent = 'Password must be at least 6 characters long.';
-            isValid = false;
+          document.getElementById('password-error').textContent = 'Password must be at least 6 characters long.';
+          isValid = false;
         }
 
         return isValid;
-    }
+      }
 
-    function validateEmail(email) {
+      function validateEmail(email) {
         var re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return re.test(String(email).toLowerCase());
-    }
+      }
 
-    document.querySelector('.authform__help--register').addEventListener('click', handleRegistration);
+      document.querySelector('.authform__help--register').addEventListener('click', handleRegistration);
 
-    function validateFormLO() {
+      function validateFormLO() {
         // Retrieve data from form fields
         var email = document.getElementById('contact-emailLO').value;
         var password = document.getElementById('contact-passwordLO').value;
@@ -695,94 +737,94 @@
         document.getElementById('password-errorLO').textContent = '';
 
         if (!validateEmail(email)) {
-            document.getElementById('email-errorLO').textContent = 'Invalid email address.';
-            return false;
+          document.getElementById('email-errorLO').textContent = 'Invalid email address.';
+          return false;
         }
 
         if (password.length < 6) {
-            document.getElementById('password-errorLO').textContent = 'Password must be at least 8 characters long.';
-            return false;
+          document.getElementById('password-errorLO').textContent = 'Password must be at least 8 characters long.';
+          return false;
         }
 
         return loginUser(email, password);
-    }
+      }
 
-    function validateEmailLO() {
+      function validateEmailLO() {
         var email = document.getElementById('contact-emailLO').value;
         if (!validateEmail(email)) {
-            document.getElementById('email-errorLO').textContent = 'Invalid email address.';
+          document.getElementById('email-errorLO').textContent = 'Invalid email address.';
         } else {
-            document.getElementById('email-errorLO').textContent = '';
+          document.getElementById('email-errorLO').textContent = '';
         }
-    }
+      }
 
-    function validatePasswordLO() {
+      function validatePasswordLO() {
         var password = document.getElementById('contact-passwordLO').value;
         if (password.length < 6) {
-            document.getElementById('password-errorLO').textContent = 'Password must be at least 6 characters long.';
+          document.getElementById('password-errorLO').textContent = 'Password must be at least 6 characters long.';
         } else {
-            document.getElementById('password-errorLO').textContent = '';
+          document.getElementById('password-errorLO').textContent = '';
         }
-    }
+      }
 
-    function loginUser(email, password) {
+      function loginUser(email, password) {
         let users = JSON.parse(localStorage.getItem('users')) || [];
         let user = users.find(user => user.email === email && user.password === password);
-        
-        if (user) {
-            // Store login details in the login object
-            let login = {
-                email: email,
-                password: password,
-            };
-            localStorage.setItem('login', JSON.stringify(login));
-            
-            alert('Login successful!');
-            window.location.href = 'products.html';
-            return true;
-        } else {
-            alert('Invalid email or password.');
-            return false;
-        }
-    }
 
-    // Loop over category
-    function populateCategories() {
+        if (user) {
+          // Store login details in the login object
+          let login = {
+            email: email,
+            password: password,
+          };
+          localStorage.setItem('login', JSON.stringify(login));
+
+          alert('Login successful!');
+          window.location.href = 'products.html';
+          return true;
+        } else {
+          alert('Invalid email or password.');
+          return false;
+        }
+      }
+
+      // Loop over category
+      function populateCategories() {
         var categoryList = document.getElementById('categoryList');
         let categories = JSON.parse(localStorage.getItem('categories')) || [];
         categoryList.innerHTML = '';
 
         categories.forEach(category => {
-            let listItem = document.createElement('li');
-            listItem.className = 'subnav-item';
+          let listItem = document.createElement('li');
+          listItem.className = 'subnav-item';
 
-            let link = document.createElement('a');
-            link.href = productsOfCategory.html?id=($category.id);
-            link.id = 'category';
-            link.textContent = category.name;
+          let link = document.createElement('a');
+          link.href = productsOfCategory.html ? id = ($category.id);
+          link.id = 'category';
+          link.textContent = category.name;
 
-            listItem.appendChild(link);
-            categoryList.appendChild(listItem);
+          listItem.appendChild(link);
+          categoryList.appendChild(listItem);
         });
-    }
+      }
 
-    document.addEventListener('DOMContentLoaded', populateCategories);
+      document.addEventListener('DOMContentLoaded', populateCategories);
 
-    // Function to update cart count
-    function updateCartItemCount() {
+      // Function to update cart count
+      function updateCartItemCount() {
         var cart = JSON.parse(localStorage.getItem('cart')) || [];
         var totalItems = cart.reduce((accumulator, item) => accumulator + item.quantity, 0);
         var cartNotificationElement = document.querySelector('.js--cartnotification');
         if (cartNotificationElement) {
-            cartNotificationElement.textContent = totalItems;
+          cartNotificationElement.textContent = totalItems;
         }
-    }
+      }
 
-    document.addEventListener('DOMContentLoaded', updateCartItemCount);
-</script>
+      document.addEventListener('DOMContentLoaded', updateCartItemCount);
+    </script>
 
-<script src="assets\js\addproducttofavorite.js"></script>
-<script src="assets\js\addproducttocart.js"></script>
+    <script src="assets\js\addproducttofavorite.js"></script>
+    <script src="assets\js\addproducttocart.js"></script>
 
 </body>
 

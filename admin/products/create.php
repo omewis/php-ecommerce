@@ -9,7 +9,7 @@ include '../includes/session.php';
  
   <?php include '../includes/head.php';
   
-  $ctg_result=$connect->query("SELECT * FROM categories");// only select need fetch
+  $ctg_result=$connect->query("SELECT * FROM categories");
   $ctg_data=$ctg_result->fetchAll(PDO::FETCH_ASSOC);
   
   if($_SERVER['REQUEST_METHOD'] =="POST"){
@@ -22,7 +22,7 @@ include '../includes/session.php';
     $category_id=$_POST['category_id'];
     $price=$_POST['price'];
     $discount=$_POST['discount'];
-    $available=isset($_POST['available']) ? $_POST['available'] : null;
+    $available = isset($_POST['available']) ? 1 : 0;
     $image=$_FILES['image'];
     $imageName=$image['name'];
     $imageTmp=$image['tmp_name'];
