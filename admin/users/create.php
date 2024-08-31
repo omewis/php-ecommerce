@@ -113,7 +113,7 @@ include '../includes/session.php';
                           type="number"
                           class="form-control"
                           id="id"
-                          placeholder="ID Here"
+                      
                           name="id"
                         />
                       </div>
@@ -129,7 +129,7 @@ include '../includes/session.php';
                           type="text"
                           class="form-control"
                           id="user_name"
-                          placeholder=" name here"
+                          
                           name="user_name"
                         />
                       </div>
@@ -145,7 +145,7 @@ include '../includes/session.php';
                           type="number"
                           class="form-control"
                           id="password"
-                          placeholder="password Here"
+                          
                           name="password"
                         />
                       </div>

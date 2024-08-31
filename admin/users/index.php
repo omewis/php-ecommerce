@@ -93,7 +93,7 @@ $users=$result->fetchAll(PDO::FETCH_ASSOC);
                                                                          
                           <td> 
                             <a href="show.php?id=<?php echo $user['id']?>" class="btn btn-primary">Show</a>
-                            <a href="edit.php?id=<?php echo $user['id']?>" class="btn btn-success">Edit</a>
+                            
                             <a href="delete.php?id=<?php echo $user['id']?>" class="btn btn-danger confirm">Delete</a>
                             <?php } ?>
                           </td>

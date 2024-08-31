@@ -3,7 +3,7 @@ function checkId($id) {
     return filter_var($id, FILTER_VALIDATE_INT) && $id > 0;
 }
 function checkName($name) {
-    return !empty($name) && preg_match("/^[a-zA-Z\s]+$/", $name);
+    return !empty($name) && preg_match("/^[a-zA-Z0-9\s]+$/", $name);
 }
 function checkDetails($details) {
     return !empty($details);

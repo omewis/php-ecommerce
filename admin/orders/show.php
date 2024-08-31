@@ -101,23 +101,24 @@ if (!$order_data) {
                            <td><?php echo $order_data['id']?></td>
                         </tr>
                         <tr>
-                           <th>address</th>
+                           <th>Address</th>
                            <td><?php echo $order_data['address']?></td>
                         </tr>
                         <tr>
-                           <th>last_name</th>
-                           <td><?php echo $order_data['last_name']?></td>
-                        </tr>
-                        <tr>
-                           <th>first_name</th>
+                           <th>First Name</th>
                            <td><?php echo $order_data['first_name']?></td>
                         </tr>
                         <tr>
-                           <th>total</th>
+                           <th>Last Name</th>
+                           <td><?php echo $order_data['last_name']?></td>
+                        </tr>
+                        
+                        <tr>
+                           <th>Total</th>
                            <td><?php echo $order_data['total']?></td>
                         </tr>
                         <tr>
-                           <th>phone</th>
+                           <th>Phone</th>
                            <td><?php echo $order_data['phone']?></td>
                         </tr>
                       </tbody>

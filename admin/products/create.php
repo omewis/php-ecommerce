@@ -136,7 +136,7 @@ include '../includes/session.php';
                           type="number"
                           class="form-control"
                           id="id"
-                          placeholder="ID Here"
+                          
                           name="id"
                         />
                       </div>
@@ -152,7 +152,7 @@ include '../includes/session.php';
                           type="text"
                           class="form-control"
                           id="name"
-                          placeholder="Product Name Here"
+                          
                           name="name"
                         />
                       </div>
@@ -168,7 +168,7 @@ include '../includes/session.php';
                           type="text"
                           class="form-control"
                           id="details"
-                          placeholder="details Here"
+                          
                           name="details"
                         />
                       </div>
@@ -184,7 +184,7 @@ include '../includes/session.php';
                           type="text"
                           class="form-control"
                           id="description"
-                          placeholder="description Here"
+                          
                           name="description"
                         />
                       </div>
@@ -200,7 +200,7 @@ include '../includes/session.php';
                           type="number"
                           class="form-control"
                           id="stock"
-                          placeholder="stock Here"
+                          
                           name="stock"
                         />
                       </div>
@@ -230,7 +230,7 @@ include '../includes/session.php';
                           type="number"
                           class="form-control"
                           id="price"
-                          placeholder="price Here"
+                          
                           name="price"
                         />
                       </div>
@@ -246,7 +246,7 @@ include '../includes/session.php';
                           type="number"
                           class="form-control"
                           id="discount"
-                          placeholder="discount Here"
+                          
                           name="discount"
                         />
                       </div>
