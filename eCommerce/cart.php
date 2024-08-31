@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="./assets/css/modal.css" />
   <link rel="stylesheet" href="./assets/css/responsive.css" />
   <link rel="stylesheet" href="./assets/css/cart2.css"/>
+  <link rel="stylesheet" href="./assets/css/quantity.css"/>
   <script src="https://kit.fontawesome.com/4a90be2ee9.js" crossorigin="anonymous"></script>
 
 </head>
@@ -23,12 +24,12 @@
           <div class="nav-left">
             <ul id="nav">
               <li class="nav-item">
-                <a href="index.html" class="header-nav-home">Home</a>
+                <a href="index.php" class="header-nav-home">Home</a>
               </li>
   
               <li class="nav-item nav-product">
                 <div class="nav-product">
-                  <a href="./products.html">Products
+                  <a href="./products.php">Products
                     <i class="fa-solid fa-caret-down nav-arrow-icon"></i></a>
                 </div>
                 <ul class="subnav" id="categoryList">
@@ -44,15 +45,15 @@
             </ul>
           </div>
           <div class="nav-between-logo">
-            <a href="./index.html">
+            <a href="./index.php">
               <img src="./assets/img/logo.png" width="140px",height="140px" alt="logo" class="nav-logo" />
             </a>
           </div>
           <div class="nav-right">
             <ul class="nav-right-list">
               <li class="list--item">
-                <a href="cart.html" class="navright-item ti-bag js-btn-cartshopping">
-                  <p class="notification js--cartnotification">0</p>
+                <a href="cart.php" class="navright-item ti-bag js-btn-cartshopping">
+                  <!--<p class="notification js--cartnotification">0</p>-->
                 </a>
               </li>
               <li class="list--item user">
@@ -103,30 +104,66 @@ try {
 ?>
 
 <center>
-    <main>
-        <table class='table'>
-            <thead>
-                <tr>
-                    <th scope='col'>Product Name</th>
-                    <th scope='col'>Product Price</th>
-                    <th scope='col'>Remove Product</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($items as $row): ?>
+<main>
+    <table class='table'>
+        <thead>
+            <tr>
+                <th scope="col">Image</th>
+                <th scope='col'>Product Name</th>
+                <th scope='col'>Product Price</th>
+                <th scope="col">Quantity</th>
+                <th scope='col'>Remove Product</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            $grand_total = 0; // Initialize grand total
+            if (isset($items) && count($items) > 0): // Check if there are items in the cart
+                foreach ($items as $row):
+                    $quantity = isset($row['quantity']) ? $row['quantity'] : 1; // Default to 1 if quantity is not set
+                    $price = $row['price'];
+                    $sub_total = $price * $quantity; // Calculate subtotal for the row
+                    $grand_total += $sub_total; // Add the item's subtotal to the grand total
+            ?>
                     <tr>
+                     
+                        <td><img src="<?php echo htmlspecialchars($row['image']); ?>" alt="Product Image" style="width: 100px; height: auto;"></td>
                         <td><?php echo htmlspecialchars($row['name']); ?></td>
-                        <td><?php echo htmlspecialchars($row['price']); ?></td>
+                        <td><?php echo htmlspecialchars($price); ?>$</td>
+                        <td>
+                            <form action="updateQuantity.php" method="post">
+                                <input type="hidden" name="id" value="<?php echo htmlspecialchars($row['id']); ?>">
+                                <input type="number" min="1" name="quantity" value="<?php echo htmlspecialchars($quantity); ?>" style="width: 60px;" class="quantity-input">
+                                <input type="submit" name="update_cart" value="Update" class="update-button">
+                            </form>
+                        </td>
                         <td><a href='delete.php?id=<?php echo htmlspecialchars($row['id']); ?>' class='btn btn-danger'>Remove</a></td>
+                        <td><?php echo htmlspecialchars($sub_total); ?>$</td> <!-- Display subtotal for the row -->
                     </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
-    </main>
-</center>
+            <?php
+                endforeach;
+            else:
+            ?>
+                <tr>
+                    <td colspan="6" style="padding:20px; text-transform:capitalize; text-align: center;">Your cart is empty</td>
+                </tr>
+            <?php endif; ?>
+        </tbody>
+        <tfoot>
+            <tr class="table-bottom">
+                <td colspan="5">Total Amount:</td>
+                <td><?php echo htmlspecialchars($grand_total); ?>$</td> <!-- Display grand total -->
+            </tr>
+        </tfoot>
+    </table>
+            </main>
+
+
+</center>  
 <div class="button-container">
     <button class="button-link">
-        <a href="products.php">Back to All Products</a>
+        <a href="products.php">Continue Shopping</a>
     </button>
     <button class="button-link">
         <a href="checkout.php">Proceed to Checkout</a>

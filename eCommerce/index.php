@@ -148,8 +148,8 @@ $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <div class="sectiontwo-title">
           <div class="title-about">
             <a href="">
-              <img src="./assets/images/logorprice.png" alt="" />
-              <p>Top Sellers</p>
+              
+              <p>Our Products</p>
             </a>
           </div>
         </div>
@@ -334,21 +334,7 @@ $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
       <div class="sectionfour width_86 width_90 m-lr-auto">
 
         <div class="sectionfour-about" id="productsContainer">
-          <div class="sectionfour-item sectiontwo-item">
-
-            <div class="item-sp">
-              <a href="./redpeachUSA.html">
-                <img src="./assets/images/accessor1.png" alt="Red Peach USA" />
-              </a>
-            </div>
-            <div class="item-sp">
-              <a href="./redpeachUSA.html" class="item-sp--name">JBL Headphone</a>
-              <div class="item-sp-price">
-                <p class="item-sp--cost">149<a>$</a></p>
-
-              </div>
-            </div>
-          </div>
+         
         </div>
       </div>
     </div>

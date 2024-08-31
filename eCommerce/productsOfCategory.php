@@ -2,7 +2,7 @@
 include '../admin/includes/session.php';
 include '../admin/includes/dbconnection.php';
 
-
+$price_filter = isset($_GET['price']) ? $_GET['price'] : [];
 //main product shower
 $category_id = isset($_GET['category_id']) ? intval($_GET['category_id']) : 0;
 $sql = "SELECT * FROM products WHERE category_id = :category_id";
@@ -62,6 +62,64 @@ $categories = $stmt2->fetchAll(PDO::FETCH_ASSOC);
 </head>
 
 <body>
+<div id="header">
+    <div class="container width_86 width_94">
+    <div class="nav-left">
+            <ul id="nav">
+              <li class="nav-item">
+                <a href="index.php" class="header-nav-home">Home</a>
+              </li>
+  
+              <li class="nav-item nav-product">
+                <div class="nav-product">
+                  <a href="./products.html">Products
+                    <i class="fa-solid fa-caret-down nav-arrow-icon"></i></a>
+                </div>
+                <ul class="subnav" id="categoryList">
+                  <li class="subnav-item"><a href="./subnavvagetable.html" id="category">Headphones</a></li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a href="./news.html">About</a>
+              </li>
+              <li class="nav-item">
+                <a href="./contact.html">Contact</a>
+              </li>
+            </ul>
+          </div>
+          <div class="nav-between-logo">
+            <a href="./index.php">
+              <img src="./assets/img/logo.png" width="140px",height="140px" alt="logo" class="nav-logo" />
+            </a>
+          </div>
+          <div class="nav-right">
+            <ul class="nav-right-list">
+              <li class="list--item">
+                <a href="cart.php" class="navright-item ti-bag js-btn-cartshopping">
+                  <!--<p class="notification js--cartnotification">0</p>-->
+                </a>
+              </li>
+              <li class="list--item user">
+                <a href="#" class="navright-item ti-user"></a>
+                <div class="signupsignin">
+                  <div class="signupsignin-item signin">
+                    <button class="btn btn-login js-btn-login">Login</button>
+                  </div>
+                  <div class="signupsignin-item signup">
+                    <button class="btn btn-register js-btn-register">
+                      Register
+                    </button>
+                  </div>
+                </div>
+              </li>
+              <li class="list--item">
+                <a href="#" class="navright-item ti-align-right js-btn-sidebar"></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+    </div>
+  </div>
 
 
     <!-- slider -->

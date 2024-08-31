@@ -1,3 +1,32 @@
+<?php
+include '../admin/includes/session.php';
+include '../admin/includes/dbconnection.php';
+
+$price_filter = isset($_GET['price']) ? $_GET['price'] : [];
+//main product shower
+$category_id = isset($_GET['category_id']) ? intval($_GET['category_id']) : 0;
+$sql = "SELECT * FROM products WHERE category_id = :category_id";
+try {
+    $stmt = $connect->prepare($sql);
+    $stmt->bindParam(':category_id', $category_id, PDO::PARAM_INT);
+    $stmt->execute();
+} catch (Exception $e) {
+    die("Query failed: " . $e->getMessage());
+}
+
+$products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+//category sidebar shower
+$sql2 = "SELECT * FROM categories";
+try {
+  $stmt2 = $connect->query($sql2);
+} catch (Exception $e) {
+  die("Query failed: " . $e->getMessage());
+}
+$categories = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -38,12 +67,12 @@
           <div class="nav-left">
             <ul id="nav">
               <li class="nav-item">
-                <a href="index.html" class="header-nav-home">Home</a>
+                <a href="index.php" class="header-nav-home">Home</a>
               </li>
   
               <li class="nav-item nav-product">
                 <div class="nav-product">
-                  <a href="./products.html"
+                  <a href="./products.php"
                     >Products <i class="fa-solid fa-caret-down nav-arrow-icon"></i
                   ></a>
                 </div>
@@ -62,7 +91,7 @@
             </ul>
           </div>
           <div class="nav-between-logo">
-            <a href="./index.html">
+            <a href="./index.php">
               <img
                 src="./assets/img/logo.png"
                 width="200px"
@@ -76,10 +105,11 @@
             <ul class="nav-right-list">
               <li class="list--item">
                 <a
-                  href="cart.html"
+                  href="cart.php"
                   class="navright-item ti-bag js-btn-cartshopping"
                 >
-                  <p class="notification js--cartnotification">0</p>
+               <!--<p class="notification js--cartnotification">0</p>-->
+              
                 </a>
               </li>
               <li class="list--item user">
@@ -114,7 +144,7 @@
         </div>
         <div class="slider-title">All products</div>
         <div class="slider-nav">
-            <a href="./index.html" class="nav-item">Home</a><i>
+            <a href="./index.php" class="nav-item">Home</a><i>
         </div>
     </div>
 
@@ -127,8 +157,15 @@
                     <div class="sidebar-title">PRODUCT CATEGORIES</div>
                     <div class="sidebar-content">
                         <div id="categoriesContainer" class="sidebar-content-list">
-                            <!-- Checkboxes will be populated here -->
+                            <?php foreach ($categories as $category): ?>
+                                <li class="subnav-item">
+                                    <a href="./productsOfCategory.php?category_id=<?php echo $category['id']; ?>">
+                                        <?php echo htmlspecialchars($category['name']); ?>
+                                    </a>
+                                </li>
+                          <?php endforeach; ?>
                         </div>
+                     
                     </div>
                 </div>
 

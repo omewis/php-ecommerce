@@ -1,0 +1,33 @@
+.update-quantity-form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.quantity-input {
+    width: 60px;
+    padding: 5px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 1rem;
+    text-align: center;
+}
+
+.update-button {
+    padding: 6px 12px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #40a46c;
+    border: 1px solid #40a46c;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 5px;
+}
+
+.update-button:hover {
+    
+    background-color: #68c891;
+    border-color: #68c891;
+    ;
+}

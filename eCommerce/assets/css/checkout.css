@@ -1,0 +1,51 @@
+/* Centering the container */
+.checkout-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  /* Styling the form */
+  #order {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    min-width: 800px; /* Increased maximum width for a wider form */
+    width: 100%;
+  }
+  
+  /* Form groups */
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Form controls */
+  .form-control {
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    padding: 1rem 1.5rem; /* Increased padding for more space inside fields */
+    width: 100%;
+  }
+  
+  /* Buttons */
+  .btn-block {
+    background-color: #dc3545;
+    border: none;
+    color: #fff;
+    padding: 1rem; /* Increased padding for a larger button */
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+  
+  .btn-block:hover {
+    background-color: #c82333;
+  }
+  
+  /* Lead text */
+  .lead {
+    margin-bottom: 1rem;
+  }
+  
